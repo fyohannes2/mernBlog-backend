@@ -45,7 +45,7 @@ const registerUser = async (req, res) => {
 // @access  Public
 const loginUser = async (req, res) => {
     try {
-    
+        
         const { email, password } = req.body;
         let toasts = [];
         if(!password) toasts.push({message: 'A valid Password is required', type: 'error'});
@@ -89,7 +89,7 @@ const loginUser = async (req, res) => {
 const getProfile = async (req, res) => {
 
     try {
-        
+      
         const user = await User.findById(req.user.id)
             .select('-password').select('-__v')
             .select('-createdAt').select('-updatedAt');
