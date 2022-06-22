@@ -14,6 +14,22 @@ const getBlogs = async (req, res) => {
         res.status(500).send('Server Error');
     }
 }
+const getBlogById = async (req, res) => {
+    try {
+        const blog = await Blog.findOne({ _id: req.params.id, user: req.user.id });
+
+        if(!blog) return res.status(404).json([
+            {
+                message: 'Blog not found',
+                type: 'error'
+            }
+        ])
+        res.json(blog);
+    } catch (err) {
+        console.error(`ERROR: ${err.message}`.bgRed.underline.bold);
+        res.status(500).send('Server Error');
+    }
+}
 
 const createBlog = async (req, res) => {
     try {
@@ -63,5 +79,6 @@ module.exports = {
     deleteBlog,
     updateBlog,
     createBlog,
-    getBlogs
+    getBlogs,
+    getBlogById
 } 
