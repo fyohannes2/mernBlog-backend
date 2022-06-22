@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const colors = require('colors');
+
 // @route   POST api/users/register
 // @desc    Register a user
 // @access  Public
